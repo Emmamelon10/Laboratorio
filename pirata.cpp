@@ -54,7 +54,6 @@ void insertartablero()
 				tablero[x-3][0]='s';
 				tablero[x-2][0]='Z';
 			}
-			tablero[a][b]=6;
 			if(e==2)
 			{
 				tablero[a][b]= 127;
