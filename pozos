@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+
+int tab[10][10],i,j,k,a,b;
+
+void print(){
+for(i=0;i<10;i++)
+{
+	for(j=0;j<10;j++)
+	{
+		printf("|%d",tab[i][j]);
+	}
+	printf("\n");
+}
+}
+
+main()
+{
+	srand(time(NULL));
+	for(i=0;i<10;i++)
+	{
+		k++;
+		for(j=0;j<10;j++)
+		{
+			tab[i][j]=1;
+			if(i<3)
+			{	
+				a=1+rand()%(11-1);
+				b=1+rand()%(11-1);
+				tab[b][a]=0;		
+			}
+		}
+	}
+	print();
+}
