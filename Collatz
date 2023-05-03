@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int b;
+
+main()
+{
+	printf("Ingrese un numero entero positivo: ");
+	scanf("%d",&b);
+	printf("|%d",b);
+	do
+	{
+		if((b%2)==0)
+		{
+			b=b/2;
+		}
+		else
+		b=(b*3)+1;
+		printf("|%d",b);
+	}
+	while(b!=1);
+}
