@@ -1,36 +1,122 @@
+//este lo hice rapido para poder avanzar con las actividades :p
 #include<stdio.h>
+#include <iostream>
 #include<time.h>
 #include<stdlib.h>
+#include<conio.h>
+using namespace std;
 
-int tab[10][10],i,j,k,a,b;
+int tab[10][10],i,j,k,p,l,press;
 
 void print(){
+	cout << "muevase con las flechas o WASD...presione Esc para salir" << endl << endl;
 for(i=0;i<10;i++)
 {
 	for(j=0;j<10;j++)
 	{
-		printf("|%d",tab[i][j]);
+		if(tab[i][j]!=178)
+		{
+			tab[i][j]=176;
+		}
+		tab[p][l]=1;
+		printf("%c",tab[i][j]);
 	}
-	printf("\n");
+	cout << endl;
 }
+}
+
+void reset()
+{
+	srand(time(NULL));
+	int a,b;
+	for(i=0;i<3;i++)
+	{
+		a=1+rand()%(10-1);
+		b=1+rand()%(10-1);
+		tab[b][a]=178;
+	}
+	do
+	{
+		p=1+rand()%(10-1);
+		l=1+rand()%(10-1);	
+	}
+	while(p==b||l==a);
 }
 
 main()
 {
-	srand(time(NULL));
-	for(i=0;i<10;i++)
-	{
-		k++;
-		for(j=0;j<10;j++)
-		{
-			tab[i][j]=1;
-			if(i<3)
-			{	
-				a=1+rand()%(11-1);
-				b=1+rand()%(11-1);
-				tab[b][a]=0;		
-			}
-		}
-	}
+	reset();
 	print();
+	while((press=getch())!=27)
+	{
+	switch(press)
+	{
+		case 115:
+			p++;
+			if(tab[p][l]==178)
+			{
+				return 0;
+			}
+			break;
+		case 80:
+			p++;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 72:
+			p--;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 119:
+			p--;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 97:
+			l--;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 75:
+			l--;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 100:
+			l++;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+		case 77:
+			l++;
+			if(tab[p][l]==178)
+			{
+				cout << "Perdiste!!"<<endl;
+				return 0;
+			}
+			break;
+	}
+	system("cls");
+	print();
+	}
+	
 }
