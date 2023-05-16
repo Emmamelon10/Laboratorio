@@ -1,0 +1,104 @@
+//me diverti con este :))
+#include<stdio.h>
+#include<windows.h>
+#include<unistd.h>
+#define color SetConsoleTextAttribute
+using namespace std;
+HANDLE hconsole = GetStdHandle( STD_OUTPUT_HANDLE );
+
+int i,maxcalle[5],luces[5][15],a=1,b=1,maxluces[5],max[5];
+
+void calle()
+{
+	for(i=0;i<5;i++)
+	{
+		printf("CALLE %d\n",i+1);
+		int k,j,calle[6]={176,177,178,177,176};
+		for(j=0;j<15;j++)
+		{
+			if(luces[i][j]==1)
+			{
+				color(hconsole,6);
+			}
+			for(k=0;k<5;k++)
+			{
+				printf("%c",calle[k]);	
+			}
+			color(hconsole,7);
+		}
+			printf("\n");
+	}
+}
+
+main()
+{
+	for(i=0;i<5;i++)
+	{
+		do
+		{
+			printf("Maximas luces permitidas para la calle %d: ",i+1);
+			scanf("%d",&maxluces[i]);
+			if(maxluces[i]>15 || maxluces[i]<0)
+			{
+				printf("\nERROR: Dato invalido\n");
+			}
+		}
+		while(maxluces[i]>15 || maxluces[i]<0);
+	}
+	while(b!=0)
+	{
+		int u;
+		u=0;
+		do
+		{
+			u++;
+			if(u>1)
+			{
+				printf("ERROR:Datos invalidos\n\n");
+			}
+			printf("Numero de calle que desea acceder: ");
+			scanf("%d",&a);
+			printf("Numero de luz que desea encender/apagar: ");
+			scanf("%d",&b);
+		}
+		while((a>5 || a<0) || b>15);
+		if(b==0)
+		{
+			continue;
+		}
+		if(luces[a-1][b-1]==1)
+		{
+			luces[a-1][b-1]=0;
+		}
+		else
+		{
+			max[a-1]++;
+			if(max[a-1]>maxluces[a-1])
+			{
+				max[a-1]--;
+				printf("\nMaxima cantidad de luces encendidas alcanzadas\n\n");
+				continue;
+			}
+			luces[a-1][b-1]=1;
+		}
+		calle();
+	}
+	for(i=0;i<5;i++)
+	{
+		printf("CALLE %d: ",i+1);
+		if(max[i]==0)
+		{
+			printf("Tenebrosa\n");
+		}
+		else if((max[i]==maxluces[i]) && ((15-max[i])<0))
+		{
+			printf("Muy luminosa\n");
+		}
+		else if((max[i]==maxluces[i]) && ((15-max[i])>=0))
+		{
+			printf("Luminosa\n");
+		}
+		else
+		printf("Tenebrosa\n");
+	}
+}
