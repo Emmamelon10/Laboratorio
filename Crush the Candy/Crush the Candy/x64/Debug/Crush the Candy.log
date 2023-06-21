@@ -1,0 +1,3 @@
+﻿  Source.cpp
+C:\Users\Administrator\Desktop\keep on little one\Laboratorio\Crush the Candy\Crush the Candy\Source.cpp(45,12): warning C4244: 'return': conversión de 'WPARAM' a 'int'; posible pérdida de datos
+C:\Users\Administrator\Desktop\keep on little one\Laboratorio\Crush the Candy\Crush the Candy\Source.cpp(13): error C4700: se utilizó la variable local 'boton' sin inicializar
