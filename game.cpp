@@ -11,17 +11,16 @@ int tiles[10][10];
 
 int main()
 {
-	int Random= aleatorio();
-	Vertex Tablero;
 	int Candys[10][10];
-	Texture caquis;
-	if(!caquis.loadFromFile("resources/graphics/Candys.png"))
+	Texture tcaquis;
+	if(!tcaquis.loadFromFile("resources/graphics/Candys.png"))
 	{
 		system("echo No se pudo encontrar (Candys.png) &pause");
 		return EXIT_FAILURE;
 	}
-    // Create the main window
-    RenderWindow window(VideoMode(1200, 800), "3 Flipendo:Also try Terraria");
+	Sprite caquis;
+	caquis.setTexture(tcaquis);
+	caquis.Transformable::setOrigin(-140,-140);
     // Load a sprite to display
     Texture texture;
     if (!texture.loadFromFile("resources/graphics/Background.jpg"))
@@ -83,6 +82,8 @@ int main()
 	Red.setPosition(240,140);
 	
 	
+    // Create the main window
+    RenderWindow window(VideoMode(1200, 800), "3 Flipendo:Also try Terraria");
 
 	
     
@@ -102,6 +103,14 @@ int main()
     // Play the music
     music.play();
     music.setLoop(true);
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<10;j++)
+		{
+			Candys[i][j]=aleatorio()*50;
+			
+		}
+	} 
     // Start the game loop
     while (window.isOpen())
     {
@@ -112,25 +121,35 @@ int main()
             // Close window: exit
             if (event.type == Event::Closed)
                 window.close();
+			if(Mouse::isButtonPressed(Mouse::Left))
+			{
+				
+			}
         }
+        
+        
+        
+        
+        
+        
+        
         // Clear screen
         window.clear();
         // Draw the sprite
         window.draw(sprite);
         window.draw(Table);
+        for(int i=0;i<10;i++)
+        {
+        	for(int j=0; j<10;j++)
+        	{
+        		caquis.setTextureRect(IntRect(Candys[i][j],0,50,50));
+        		caquis.setPosition(i*50,j*50);
+        		window.draw(caquis);
+			}
+		}
         // Draw the string
         //window.draw(text);
         // Update the window
-	for(int i=0;i<10;i++)
-	{
-		for(int j=0;j<10;j++)
-		{
-			Candys[i][j]=Random;
-			Tablero.position=Vector2f(i*50.f,j*50.f);
-			Tablero.texCoords=Vector2f(Candys[i][j]*50.f,0.f);
-			window.draw(Tablero);
-		}
-	} 
         window.display();
     }
     return EXIT_SUCCESS;
