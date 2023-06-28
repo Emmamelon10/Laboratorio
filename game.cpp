@@ -11,7 +11,7 @@ int tiles[10][10];
 
 int main()
 {
-	int Candys[10][10];
+	int Tablero[10][10];
 	Texture tcaquis;
 	if(!tcaquis.loadFromFile("resources/graphics/Candys.png"))
 	{
@@ -20,7 +20,7 @@ int main()
 	}
 	Sprite caquis;
 	caquis.setTexture(tcaquis);
-	caquis.Transformable::setOrigin(-140,-140);
+	//caquis.Transformable::setOrigin(-140,-140);
     // Load a sprite to display
     Texture texture;
     if (!texture.loadFromFile("resources/graphics/Background.jpg"))
@@ -107,7 +107,7 @@ int main()
 	{
 		for(int j=0;j<10;j++)
 		{
-			Candys[i][j]=aleatorio()*50;
+			Tablero[i][j]=aleatorio()*50;
 			
 		}
 	} 
@@ -123,7 +123,16 @@ int main()
                 window.close();
 			if(Mouse::isButtonPressed(Mouse::Left))
 			{
-				
+				for(int i=0;i<10;i++)
+				{
+					for(int j=0;j<10;j++)
+					{
+						IntRect BOX=IntRect(i*50,j*50,50,50);
+						//if()
+						{
+						}
+					}
+				}
 			}
         }
         
@@ -142,7 +151,7 @@ int main()
         {
         	for(int j=0; j<10;j++)
         	{
-        		caquis.setTextureRect(IntRect(Candys[i][j],0,50,50));
+        		caquis.setTextureRect(IntRect(Tablero[i][j],0,50,50));
         		caquis.setPosition(i*50,j*50);
         		window.draw(caquis);
 			}
