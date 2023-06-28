@@ -121,16 +121,42 @@ int main()
             // Close window: exit
             if (event.type == Event::Closed)
                 window.close();
-			if(Mouse::isButtonPressed(Mouse::Left))
-			{
-				for(int i=0;i<10;i++)
+                
+				else if(Mouse::isButtonPressed(Mouse::Left))
 				{
-					for(int j=0;j<10;j++)
+					for(int i=0;i<10;i++)
 					{
-						IntRect BOX=IntRect(i*50,j*50,50,50);
-						//if()
-						{
-						}
+						for(int j=0;j<10;j++)
+						{	
+							IntRect BOX=IntRect(i*50,j*50,50,50);
+							if(BOX.contains(Vector2i(Mouse::getPosition())))
+							{
+								int cursi = i;
+								int cursj = j;
+								while(!Mouse::isButtonPressed(Mouse::Left))
+								{
+									if(Mouse::isButtonPressed(Mouse::Left))
+									{
+										for(int a=0;a<10 ;a++)
+										{
+											for(int b=0;b<10;b++)
+											{
+												if(BOX.contains(Vector2i(Mouse::getPosition())))
+												{
+													int aux;
+													aux=Tablero[i][j];
+													Tablero[i][j]=Tablero[a][b];
+													Tablero[a][b]=aux;
+												}
+											}
+										}
+									}
+								}
+								system("echo SUCCESS &pause");
+									
+							}
+								
+						}	
 					}
 				}
 			}
