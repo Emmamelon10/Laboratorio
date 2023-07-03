@@ -6,8 +6,6 @@
 using namespace sf;
 using namespace std;
 
-int tiles[10][10];
-
 
 int main()
 {
@@ -83,20 +81,22 @@ int main()
 	
 	
     // Create the main window
-    RenderWindow window(VideoMode(1200, 800), "3 Flipendo:Also try Terraria");
+    RenderWindow window(VideoMode(500, 500), "3 Flipendo:Also try Terraria");
 
 	
     
     // Create a graphical text to display
     Font font;
-    if (!font.loadFromFile("resources/04B_30__.ttf")){
+    if (!font.loadFromFile("resources/04B_30__.ttf"))
+	{
     system("echo No se pudo cargar o encontrar la fuente &pause");
     return EXIT_FAILURE;
 	}
     Text text("3 FLIPENDO", font, 50);
     // Load a music to play
     Music music;
-    if (!music.openFromFile("resources/audio/Music.ogg")){
+    if (!music.openFromFile("resources/audio/Music.ogg"))
+	{
     system("echo No se pudo cargar o encontrar el audio &pause");
 	    return EXIT_FAILURE;
 	}
@@ -114,52 +114,32 @@ int main()
     // Start the game loop
     while (window.isOpen())
     {
+                int c,u,aux;
+                bool flag ;
+    	Vector2i mouse=Mouse::getPosition(window);
+    	int x = mouse.x/50;
+    	int y = mouse.y/50;
         // Process events
         Event event;
         while (window.pollEvent(event))
         {
+        	
             // Close window: exit
             if (event.type == Event::Closed)
                 window.close();
-                
-				else if(Mouse::isButtonPressed(Mouse::Left))
+        	window.clear();
+				if(event.key.code==Mouse::isButtonPressed(Mouse::Left))
 				{
-					for(int i=0;i<10;i++)
+					if(flag)
 					{
-						for(int j=0;j<10;j++)
-						{	
-							IntRect BOX=IntRect(i*50,j*50,50,50);
-							if(BOX.contains(Vector2i(Mouse::getPosition())))
-							{
-								int cursi = i;
-								int cursj = j;
-								while(!Mouse::isButtonPressed(Mouse::Left))
-								{
-									if(Mouse::isButtonPressed(Mouse::Left))
-									{
-										for(int a=0;a<10 ;a++)
-										{
-											for(int b=0;b<10;b++)
-											{
-												if(BOX.contains(Vector2i(Mouse::getPosition())))
-												{
-													int aux;
-													aux=Tablero[i][j];
-													Tablero[i][j]=Tablero[a][b];
-													Tablero[a][b]=aux;
-												}
-											}
-										}
-									}
-								}
-								system("echo SUCCESS &pause");
-									
-							}
-								
-						}	
+						Tablero[c][u]=Tablero[x][y];
+						Tablero[x][y]=aux;
 					}
+					aux=Tablero[x][y];
+					c=x;
+					u=y;
+					flag=!flag;
 				}
-			}
         }
         
         
@@ -169,7 +149,6 @@ int main()
         
         
         // Clear screen
-        window.clear();
         // Draw the sprite
         window.draw(sprite);
         window.draw(Table);
